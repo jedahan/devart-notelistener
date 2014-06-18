@@ -10,6 +10,7 @@
   "version": "0.0.1",
   "author": "Jonathan Dahan <jonathan@jonathan.is>",
   "dependencies": {
+    "co-monk": "^1.0.0",
     "coffee-script": "https://github.com/xixixao/coffee-script/tarball/master",
     "koa": "^0.8.0",
     "koa-better-body": "^1.0.0",
@@ -17,7 +18,7 @@
     "koa-markdown": "0.0.3",
     "koa-response-time": "^1.0.2",
     "koa-router": "^3.1.4",
-    "mongoose": "^3.8.12"
+    "monk": "^0.9.0"
   },
   "engines": {
     "node": "^0.11.13",

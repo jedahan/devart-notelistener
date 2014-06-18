@@ -5,22 +5,10 @@ router = require 'koa-router'
 markdown = require 'koa-markdown'
 body = require('koa-better-body')()
 
-mongoose = require 'mongoose'
-Schema = mongoose.Schema
-
-noteSchema = new Schema(
-  note: Number
-  octave: Number
-  confidence: Number
-  diffidence: Number
-  duration: Number
-  station: String
-  city: String
-  country: String
-  lat: Number
-  long: Number
-  file: Buffer
-)
+monk = require 'monk'
+wrap = require 'co-monk'
+db = monk 'localhost/test'
+notes = wrap db.get 'notes'
 
 app = koa()
 
@@ -29,9 +17,10 @@ app.use logger()
 app.use router(app)
 app.get '/', markdown baseUrl: '/', root: __dirname, indexName: 'Readme'
 app.get '/note', body, -->
-  @body = @request.body
+  @body = yield notes.find @request.body
+
 app.post '/note', body, -->
-  @body = @request.body
+  @body = yield notes.insert @request.body
 
 app.listen process.env.PORT or 5000, ->
   console.log "[#{process.pid}] listening on :#{+@_connectionKey.split(':')[2]}"
