@@ -3,6 +3,7 @@ response_time = require 'koa-response-time'
 logger = require 'koa-logger'
 router = require 'koa-router'
 markdown = require 'koa-markdown'
+body = require('koa-better-body')()
 
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
@@ -27,12 +28,10 @@ app.use response_time()
 app.use logger()
 app.use router(app)
 app.get '/', markdown baseUrl: '/', root: __dirname, indexName: 'Readme'
-app.get '/note', ->
-  console.log @body
-  @body = 'note should return here'
-app.post '/note', ->
-  console.log @body
-  @body = 'note added to db (fake)'
+app.get '/note', body, -->
+  @body = @request.body
+app.post '/note', body, -->
+  @body = @request.body
 
 app.listen process.env.PORT or 5000, ->
   console.log "[#{process.pid}] listening on :#{+@_connectionKey.split(':')[2]}"
