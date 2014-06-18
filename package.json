@@ -1,0 +1,31 @@
+{
+  "name": "devartserver",
+  "bugs": "http://github.com/jedahan/devartserver/issues",
+  "contributors": [
+    "Jonathan Dahan"
+  ],
+  "licenses": [
+    "ISC"
+  ],
+  "version": "0.0.1",
+  "author": "Jonathan Dahan <jonathan@jonathan.is>",
+  "dependencies": {
+    "coffee-script": "https://github.com/xixixao/coffee-script/tarball/master",
+    "koa": "^0.8.0",
+    "koa-logger": "^1.2.1",
+    "koa-markdown": "0.0.3",
+    "koa-response-time": "^1.0.2",
+    "koa-router": "^3.1.4"
+  },
+  "engines": {
+    "node": "^0.11.13",
+    "npm": "^1.4.9"
+  },
+  "scripts": {
+    "start": "coffee --nodejs --harmony server.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jedahan/devartserver.git"
+  }
+}
