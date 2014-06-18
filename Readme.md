@@ -48,7 +48,7 @@ Add a new record to the database with the following data:
 }
 ```
 
-For example, try `curl -F "file=@myfile.mp3;type=audio/mpeg" -H "Content-Type: application/json" -d '{"note":0,"octave":1,"confidence":0.778,"diffidence":0.44,"duration":12.22,"station":"the psychadelicatessan","city":"stony brook, new york","country":"merica","lat":-73.23,"lon":38.14}' localhost:5000/note`
+For example, try `curl -X POST -F "file=@yellow_cactus.mp3;type=audio/mpeg" -F note="0" -F octave="1" -F confidence="0.778" -F diffidence="0.44" -F duration="12.22" -F station="the psychadelicatessan" -F city="stony brook, new york" -F country="merica" -F lat="-73.23" -F lon="38.14" localhost:5000/note`
 
 ### `GET /note?[note=int]&[octave=int]&[limit=int]`
 
