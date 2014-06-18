@@ -48,8 +48,17 @@ Add a new record to the database with the following data:
 }
 ```
 
-For example, try `curl -X POST -F "file=@yellow_cactus.mp3;type=audio/mpeg" -F note="0" -F octave="1" -F confidence="0.778" -F diffidence="0.44" -F duration="12.22" -F station="the psychadelicatessan" -F city="stony brook, new york" -F country="merica" -F lat="-73.23" -F lon="38.14" localhost:5000/note`
+For example, try `curl -X POST -F "file=@yellow_cactus.mp3;type=audio/mpeg" -F note=0 -F octave=1 -F confidence=0.778 -F diffidence=0.44 -F duration="12.22" -F station="the psychadelicatessan" -F city="stony brook, new york" -F country="merica" -F lat=-73.23 -F lon=38.14 localhost:5000/note`
 
-### `GET /note?[note=int]&[octave=int]&[limit=int]`
+### `GET /note`
 
-Get a list of all the possible notes that match note and octave, up to `limit` results. This will sort by the latest notes.
+Get a list of all the possible notes that match whatever filters you give it.
+
+For example, try `curl -X GET -d lon=38.14`
+
+Todo
+----
+
+- sort by latest notes added
+- add timestamps and ability to filter by timestamps
+- update json-mask to latest stable version
