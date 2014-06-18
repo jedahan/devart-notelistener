@@ -11,6 +11,12 @@ npm install -g n && n latest
 npm install
 ```
 
+Make sure /data/db exists and is writeable by your user:
+
+```
+mkdir -p /data/db
+```
+
 Running
 -------
 
