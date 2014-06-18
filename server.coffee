@@ -20,6 +20,7 @@ app.get '/note', body, -->
   @body = yield notes.find @request.body
 
 app.post '/note', body, -->
+  # TODO: save mp3 from body to file, and place filename into record
   @body = yield notes.insert @request.body
 
 app.listen process.env.PORT or 5000, ->
