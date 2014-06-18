@@ -10,9 +10,10 @@ app.use response_time()
 app.use logger()
 app.use router(app)
 app.get '/', markdown baseUrl: '/', root: __dirname, indexName: 'Readme'
-app.get '/object/:id', cache(expire: oneMonth), cacheImage(), getObject
-app.get '/search/:term?*', cache(expire: oneDay), cacheImage(), getIds
-app.get '/search', cache(expire: oneDay), getIds
+app.get '/note', ->
+  @body = 'note should return here'
+app.post '/note', ->
+  @body = 'note added to db (fake)'
 
 app.listen process.env.PORT or 5000, ->
   console.log "[#{process.pid}] listening on :#{+@_connectionKey.split(':')[2]}"
