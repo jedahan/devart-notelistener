@@ -1,3 +1,4 @@
+{name} = require './package.json'
 koa = require 'koa'
 response_time = require 'koa-response-time'
 logger = require 'koa-logger'
@@ -21,7 +22,7 @@ app.use router(app)
 app.get '/', markdown baseUrl: '/', root: __dirname, indexName: 'Readme'
 
 app.get '/note', body, -->
-  @body = yield notes.find @request.body
+  @body = yield notes.find({timestamp: {$gt: + @request.body?.since or 0}}).sort({timestamp: -1})
 
 app.post '/note', body, -->
   note = @request.body.fields
@@ -29,4 +30,19 @@ app.post '/note', body, -->
   @body = yield notes.insert note
 
 app.listen process.env.PORT or 5000, ->
-  console.log "[#{process.pid}] listening on :#{+@_connectionKey.split(':')[2]}"
+  console.log "[#{process.pid}] #{name} listening on :#{+@_connectionKey.split(':')[2]}"
+  registerNotificationChannel name
+
+requestNotificationChannel = (id) ->
+  bucket = "notesu"
+  url = "https://www.googleapis.com/storage/v1beta2/b/#{bucket}/o/watch?alt=json"
+  headers =
+    Authorization: "Bearer #{OAuthToken}"
+  json =
+    token: client_token # how do I get this?
+    type: 'web_hook'
+    id: id
+    address: "https://notelistener.dhcp.io:5000/note" # how do I get this?
+
+  request.post {url,headers,json}, (err, res, body) ->
+    console.log err or body

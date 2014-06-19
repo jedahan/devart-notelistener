@@ -1,5 +1,5 @@
 {
-  "name": "devartserver",
+  "name": "notelistener",
   "bugs": "http://github.com/jedahan/devartserver/issues",
   "contributors": [
     "Jonathan Dahan"
@@ -7,7 +7,7 @@
   "licenses": [
     "ISC"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Jonathan Dahan <jonathan@jonathan.is>",
   "dependencies": {
     "co-monk": "^1.0.0",
