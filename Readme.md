@@ -12,12 +12,12 @@ tar xf node-v0.10.29.tar.gz
 cd node-v0.10.29
 ./configure
 make
-make install
+sudo make install
 ```
 
 Install dependencies
 ```
-npm install -g n  # Install [n](github.com/visionmedia/n)
+sudo npm install -g n  # Install [n](github.com/visionmedia/n)
 n latest          # Get and switch to the latest 0.11.x series of node.js, for koa
 npm install       # Install latest versions of node modules for app
 sudo apt-get install mongodb #install mongodb
