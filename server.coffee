@@ -23,7 +23,7 @@ app.get '/note', body, -->
   @body = yield notes.find({timestamp: {$gt: + @request.body?.since or 0}}).sort({timestamp: -1})
 
 app.post '/note', body, -->
-  console.log @
+  console.log @request
   note = @request.body.fields
   @body = yield notes.insert note
 
