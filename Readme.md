@@ -5,7 +5,7 @@ Setup
 -----
 
 Install node.js [node](nodejs.org)
-```
+```bash
 sudo apt-get install build-essential
 wget http://nodejs.org/dist/v0.10.29/node-v0.10.29.tar.gz
 tar xf node-v0.10.29.tar.gz
@@ -49,7 +49,7 @@ Web hook for file change notifications from google cloud storage, expects
    city: string
    country: string
    lat: float
-   long: float
+   lon: float
    file: binary mp3 file
 }
 ```
