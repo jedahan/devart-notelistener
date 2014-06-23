@@ -39,28 +39,23 @@ This readme!
 
 Web hook for file change notifications from google cloud storage, expects
 
-```
-{  note: int
-   octave: int
-   confidence: float
-   diffidence: float
-   duration: float
-   station: string
-   city: string
-   country: string
-   lat: float
-   lon: float
-   file: binary mp3 file
-}
-```
+### `GET /notes?since=timestamp&limit=#toreturn&fields=fieldmask`
 
-For testing, try `curl -X POST -F "file=@yellow_cactus.mp3;type=audio/mpeg" -F note=0 -F octave=1 -F confidence=0.778 -F diffidence=0.44 -F duration="12.22" -F station="the psychadelicatessan" -F city="stony brook, new york" -F country="merica" -F lat=-73.23 -F lon=38.14 localhost:5000/note`
+Get a list of **limit** notes newer than **timestamp**
 
-### `GET /notes?since=timestamp`
+Fieldmask uses [json-mask](https://github.com/nemtsov/json-mask) to reduce the load over the wire.
 
-Get a list of all the possible notes newer than timestamp.
+To get just the medialink, name, and owner entityId of the last note
 
-For example, try for the last 5 minuts of notes, try `curl -X GET -d since=$(( `date +%s` - $((5*60)) )) https://localhost:5000/notes`
+    curl https://devartplaytheworld.com/notes\?limit\=1&fields\=\(mediaLink,name,owner/entityId\)
+
+For the last 5 minutes of notes
+
+    curl https://devartplaytheworld.com/notes\?since\=$((`date +%s` - $((5*60)) ))
+
+For the last 10 notes
+
+    curl https://devartplaytheworld.com/notes\?limit\=10
 
 Todo
 ----

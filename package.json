@@ -15,6 +15,7 @@
     "coffee-script": "https://github.com/xixixao/coffee-script/tarball/master",
     "koa": "^0.8.0",
     "koa-better-body": "^1.0.0",
+    "koa-json-mask": "^0.1.0",
     "koa-logger": "^1.2.1",
     "koa-markdown": "0.0.3",
     "koa-response-time": "^1.0.2",

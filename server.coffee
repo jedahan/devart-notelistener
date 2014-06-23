@@ -5,6 +5,8 @@ logger = require 'koa-logger'
 router = require 'koa-router'
 body = require('koa-better-body')()
 
+mask = require 'koa-json-mask'
+
 monk = require 'monk'
 wrap = require 'co-monk'
 db = monk 'localhost/test'
@@ -14,15 +16,22 @@ app = koa()
 
 app.use response_time()
 app.use logger()
+app.use mask()
 app.use router(app)
+
+unixtime = -> Math.round((new Date).getTime() / 1000)
+
+app.get '/timestamp', -->
+  @body = {timestamp: new Date()}
 
 app.get '/notes', -->
   since = @request.query?.since
-  @body = yield notes.find({timestamp: {$gte: new Date(since)}})
+  limit = @request.query?.limit
+  @body = yield notes.find({timestamp: {$gte: since}}, {limit})
 
 app.post '/', body, -->
   note = @request.body
-  note.timestamp = new Date()
+  note.timestamp = unixtime()
   @body = yield notes.insert note
 
 app.listen process.env.PORT or 5000, ->
