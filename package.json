@@ -1,5 +1,6 @@
 {
   "name": "notelistener",
+  "main": "server.coffee",
   "bugs": "http://github.com/jedahan/devartserver/issues",
   "contributors": [
     "Jonathan Dahan"
