@@ -1,18 +1,15 @@
 devart server
 =============
 
-Using
------
-
-### `GET /timestamp`
+#### `GET /timestamp`
 
 Return the unix timestamp of the server
 
-### `POST /note`
+#### `POST /note`
 
 Web hook for file change notifications from google cloud storage, expects
 
-### `GET /notes?since=timestamp&limit=#toreturn&fields=fieldmask`
+#### `GET /notes?since=timestamp&limit=#toreturn&fields=fieldmask`
 
 Get a list of **limit** notes newer than **timestamp**
 
@@ -30,8 +27,7 @@ For the last 10 notes
 
     curl https://devartplaytheworld.com/notes\?limit\=10
     
-Setup
------
+### Setup
 
 Install node.js [node](nodejs.org)
 
@@ -51,7 +47,6 @@ Install dependencies
     sudo apt-get install mongodb #install mongodb
 
 
-Running
--------
+### Running
 
 Start running the server with `npm start`. Make sure mongod is running somewhere. Or, when developing you can use `foreman start` if you have installed [foreman](https://github.com/ddollar/foreman). You can now view this readme with `open https://localhost:5000/`.
