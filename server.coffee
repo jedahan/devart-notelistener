@@ -18,10 +18,12 @@ app.use router(app)
 
 app.get '/notes', -->
   since = @request.query?.since
-  @body = yield notes.find({updated: {$gt: since}}).sort({updated: -1})
+  @body = yield notes.find({timestamp: {$gte: new Date(since)}})
 
 app.post '/', body, -->
-  @body = yield notes.insert @request.body
+  note = @request.body
+  note.timestamp = new Date()
+  @body = yield notes.insert note
 
 app.listen process.env.PORT or 5000, ->
   console.log "[#{process.pid}] #{name} listening on :#{+@_connectionKey.split(':')[2]}"
