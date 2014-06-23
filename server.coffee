@@ -17,9 +17,8 @@ app.use logger()
 app.use router(app)
 
 app.get '/notes', -->
-  console.log since = @request.query?.since
-  @body = yield notes.find()
-  #{updated: {$gt: since}}).sort({updated: -1})
+  since = @request.query?.since
+  @body = yield notes.find({updated: {$gt: since}}).sort({updated: -1})
 
 app.post '/', body, -->
   @body = yield notes.insert @request.body
