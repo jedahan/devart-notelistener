@@ -22,11 +22,11 @@ app.use router(app)
 unixtime = -> Math.round((new Date).getTime() / 1000)
 
 app.get '/timestamp', -->
-  @body = {timestamp: new Date()}
+  @body = unixtime()
 
 app.get '/notes', -->
-  since = @request.query?.since
-  limit = @request.query?.limit
+  since = + @request.query?.since
+  limit = + @request.query?.limit
   @body = yield notes.find({timestamp: {$gte: since}}, {limit})
 
 app.post '/', body, -->
