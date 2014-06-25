@@ -30,9 +30,12 @@ app.get '/notes', -->
   @body = yield notes.find({timestamp: {$gte: since}}, {limit})
 
 app.post '/', body, -->
-  note = @request.body
-  note.timestamp = unixtime()
-  @body = yield notes.insert note
+  if @header['x-goog-resource-state'] is 'not_exists'
+    @body = yield notes.remove id: @request.body.id
+  else
+    note = @request.body
+    note.timestamp = unixtime()
+    @body = yield notes.insert note
 
 app.listen process.env.PORT or 5000, ->
   console.log "[#{process.pid}] #{name} listening on :#{+@_connectionKey.split(':')[2]}"
